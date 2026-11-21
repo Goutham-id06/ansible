@@ -1,0 +1,25 @@
+---
+- name: Understanding Ansible handlers
+  hosts: webservers
+  become: true
+
+  tasks:
+    - name: Update Nginx configuration
+      copy:
+        content: |
+          server {
+              listen 80;
+              server_name localhost;
+
+              location / {
+                  return 200 "Hello from Ansible!";
+              }
+          }
+        dest: /etc/nginx/conf.d/hello.conf
+      notify: Restart Nginx
+
+  handlers:
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted
