@@ -1,0 +1,19 @@
+---
+- name: Install web server
+  hosts: webservers
+  become: true
+
+  vars:
+    package_name: nginx
+
+  tasks:
+    - name: Install web server
+      dnf:
+        name: "{{ package_name }}"
+        state: present
+
+    - name: Start web server
+      service:
+        name: "{{ package_name }}"
+        state: started
+        enabled: true
