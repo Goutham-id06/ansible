@@ -1,0 +1,23 @@
+---
+- name: Understanding Ansible tags
+  hosts: webservers
+  become: true
+
+  tasks:
+    - name: Install Nginx
+      dnf:
+        name: nginx
+        state: present
+      tags: web
+
+    - name: Install Git
+      dnf:
+        name: git
+        state: present
+      tags: tools
+
+    - name: Install Curl
+      dnf:
+        name: curl
+        state: present
+      tags: tools
