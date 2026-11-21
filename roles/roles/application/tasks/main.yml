@@ -1,0 +1,10 @@
+---
+- name: Display application deployment message
+  debug:
+    msg: "Application deployment started successfully!"
+
+- name: Create application directory
+  file:
+    path: /opt/myapp
+    state: directory
+    mode: '0755'
