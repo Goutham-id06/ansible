@@ -1,0 +1,20 @@
+---
+- name: Understanding Ansible conditionals
+  hosts: webservers
+  become: true
+
+  vars:
+    package_name: nginx
+    environment: dev
+
+  tasks:
+    - name: Install Git
+      dnf:
+        name: git
+        state: present
+
+    - name: Install Nginx only in development
+      dnf:
+        name: "{{ package_name }}"
+        state: present
+      when: environment == "dev"
