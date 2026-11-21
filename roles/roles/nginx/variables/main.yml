@@ -1,7 +1,2 @@
 ---
 nginx_package: nginx
-nginx_service: nginx
-nginx_listen_port: 8080
-nginx_server_name: localhost
-nginx_welcome_message: "Hello from Ansible Role!"
-nginx_config_path: /etc/nginx/conf.d/role-demo.conf
