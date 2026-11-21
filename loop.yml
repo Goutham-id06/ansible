@@ -1,0 +1,19 @@
+---
+- name: Multiple Serices
+  hosts: webserver
+  become: true
+
+  vars:
+   packages:
+     - git
+     - vim
+     - curl
+     - tree
+     - wget
+
+  tasks:
+    - name: Install Applications
+    dnf:
+     name: "{{item}}"
+     state: present
+    loop: "{{packages}}"
