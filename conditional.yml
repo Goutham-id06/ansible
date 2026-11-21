@@ -5,7 +5,7 @@
 
   vars:
     package_name: nginx
-    environment: dev
+    deployment_env: dev
 
   tasks:
     - name: Install Git
@@ -17,4 +17,4 @@
       dnf:
         name: "{{ package_name }}"
         state: present
-      when: environment == "dev"
+      when: deployment_env == "dev"
