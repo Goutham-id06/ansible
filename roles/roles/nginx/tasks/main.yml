@@ -1,0 +1,25 @@
+---
+- name: Install Nginx
+  dnf:
+    name: "{{ nginx_package }}"
+    state: present
+
+- name: Start Nginx
+  service:
+    name: "{{ nginx_service }}"
+    state: started
+    enabled: true
+
+- name: Copy Nginx configuration
+  copy:
+    content: |
+      server {
+          listen {{ nginx_listen_port }};
+          server_name {{ nginx_server_name }};
+
+          location / {
+              return 200 "{{ nginx_welcome_message }}";
+          }
+      }
+    dest: "{{ nginx_config_path }}"
+  notify: Restart Nginx
