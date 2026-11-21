@@ -1,18 +1,17 @@
+
 ---
--name: Nginx
-hosts: all
-become: true
+- name: Install and configure Nginx
+  hosts: webservers
+  become: true
 
-tasks:
-   -name: Install Nginx
-   dnf:
-    name: nginx
-    state: present
+  tasks:
+    - name: Install Nginx
+      dnf:
+        name: nginx
+        state: present
 
-    -name: Start Nginx Service
-    Service:
-      name: nginx
-      stats: started
-      enabled: true
-   
-   
+    - name: Start Nginx service
+      service:
+        name: nginx
+        state: started
+        enabled: true
